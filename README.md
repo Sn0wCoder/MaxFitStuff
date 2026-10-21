@@ -1,0 +1,45 @@
+# MaxFitStuff
+
+A lightweight, open replacement for Fantech's software for the **MAXFIT61 (MK857)** keyboard. No vendor app, no background service, no driver install. It talks to the keyboard directly over its own HID protocol, which I reverse engineered from the official software.
+
+Tested on: `MAXFIT61 Mechanical Keyboard`, `0416:C345`, model `XS61BRGB`, firmware `V1.03.07`.
+
+## What's in here
+
+| Folder | What it is |
+|---|---|
+| [`MaxFitStudio`](MaxFitStudio) | **The app.** A Rust/egui GUI with firmware effects, live PC-rendered animations, per-key painting and presets. Start here if you just want to control your lights. |
+| [`FanTechMaxFitCollection`](FanTechMaxFitCollection) | **The driver.** A C++ library plus `maxfitctl`, a command-line tool. Use it if you want to script the keyboard or build something of your own on top. |
+
+The full protocol writeup, covering how it was reversed and what every byte does, is in [`FanTechMaxFitCollection/Docs/PROTOCOL.md`](FanTechMaxFitCollection/Docs/PROTOCOL.md).
+
+## Quick start
+
+**GUI** (needs Rust via rustup):
+
+```powershell
+cd MaxFitStudio
+.\cargo.ps1 run -p maxfit-gui --release
+```
+
+**Command line** (needs Visual Studio 2022):
+
+```powershell
+cd FanTechMaxFitCollection
+msbuild FanTechMaxFitCollection.sln /p:Configuration=Release /p:Platform=x64
+build\x64\Release\maxfitctl.exe info
+```
+
+Prebuilt binaries are on the [Releases](../../releases) page.
+
+## Why
+
+The official FANTECH app is a 2022 Qt bundle that gives you a handful of fixed effects and one clunky custom layer. It turns out the keyboard is actually a 132-pixel RGB screen that can run at about 125 fps, which the vendor software never takes advantage of.
+
+## Safety
+
+Only lighting is written to the keyboard. The firmware's bootloader and flash commands (`0x0B` / `0x0C`) are deliberately left out of both projects, so neither can brick your board. Key remapping is documented but not implemented yet. See the protocol doc for why.
+
+## Not affiliated
+
+This project has nothing to do with Fantech. "Fantech", "MAXFIT61" and "MK857" are their trademarks, used here only to say which hardware this works with.
