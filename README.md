@@ -1,5 +1,12 @@
 # MaxFitStuff
 
+[![CI](https://github.com/Sn0wCoder/MaxFitStuff/actions/workflows/ci.yml/badge.svg)](https://github.com/Sn0wCoder/MaxFitStuff/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Sn0wCoder/MaxFitStuff?include_prereleases&label=release)](https://github.com/Sn0wCoder/MaxFitStuff/releases)
+![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)
+![Rust](https://img.shields.io/badge/Rust-egui-B7410E?logo=rust)
+![C++](https://img.shields.io/badge/C%2B%2B-MSVC-00599C?logo=cplusplus)
+![Firmware](https://img.shields.io/badge/tested%20on-V1.03.07-lightgrey)
+
 A lightweight, open replacement for Fantech's software for the **MAXFIT61 (MK857)** keyboard. No vendor app, no background service, no driver install. It talks to the keyboard directly over its own HID protocol, which I reverse engineered from the official software.
 
 Tested on: `MAXFIT61 Mechanical Keyboard`, `0416:C345`, model `XS61BRGB`, firmware `V1.03.07`.
