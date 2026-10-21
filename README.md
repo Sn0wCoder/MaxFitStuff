@@ -47,6 +47,14 @@ The official FANTECH app is a 2022 Qt bundle that gives you a handful of fixed e
 
 Only lighting is written to the keyboard. The firmware's bootloader and flash commands (`0x0B` / `0x0C`) are deliberately left out of both projects, so neither can brick your board. Key remapping is documented but not implemented yet. See the protocol doc for why.
 
+That said, this is unofficial software built by reverse engineering, and it's only been tested on the hardware and firmware listed above. You use it at your own risk. I'm not responsible for anything that happens to your keyboard, including if it stops working.
+
 ## Not affiliated
 
 This project has nothing to do with Fantech. "Fantech", "MAXFIT61" and "MK857" are their trademarks, used here only to say which hardware this works with.
+
+## License
+
+Apache 2.0, see [LICENSE](LICENSE). Use it however you like, closed source included. Just keep the license and credit this repo.
+
+The files in `MaxFitStudio/vendor-data/` come from Fantech's software and aren't covered by this license.
