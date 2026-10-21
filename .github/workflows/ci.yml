@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  driver:
+    name: C++ driver (maxfitctl)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Build
+        working-directory: FanTechMaxFitCollection
+        run: msbuild FanTechMaxFitCollection.sln /m /p:Configuration=Release /p:Platform=x64
+
+      - name: Test (no hardware needed)
+        working-directory: FanTechMaxFitCollection
+        run: Build\x64\Release\maxfit_tests.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maxfitctl-x64
+          path: FanTechMaxFitCollection/Build/x64/Release/maxfitctl.exe
+
+  studio:
+    name: Rust GUI (MaxFit Studio)
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: MaxFitStudio
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: MaxFitStudio
+
+      - name: Test (no hardware needed)
+        run: cargo test --workspace
+
+      - name: Build release
+        run: cargo build --release -p maxfit-gui
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maxfit-studio-x64
+          path: MaxFitStudio/target/release/maxfit-gui.exe
