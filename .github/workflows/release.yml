@@ -1,0 +1,91 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    name: Build and publish
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: MaxFitStudio
+
+      - name: Build driver
+        working-directory: FanTechMaxFitCollection
+        run: msbuild FanTechMaxFitCollection.sln /m /p:Configuration=Release /p:Platform=x64
+
+      - name: Test driver
+        working-directory: FanTechMaxFitCollection
+        run: Build\x64\Release\maxfit_tests.exe
+
+      - name: Test studio
+        working-directory: MaxFitStudio
+        run: cargo test --workspace
+
+      - name: Build studio
+        working-directory: MaxFitStudio
+        run: cargo build --release -p maxfit-gui
+
+      - name: Package
+        shell: pwsh
+        run: |
+          $v = "${{ github.ref_name }}"
+          New-Item -ItemType Directory dist | Out-Null
+
+          New-Item -ItemType Directory stage-studio | Out-Null
+          Copy-Item MaxFitStudio\target\release\maxfit-gui.exe stage-studio\MaxFitStudio.exe
+          Copy-Item LICENSE, README.md stage-studio\
+          Compress-Archive stage-studio\* "dist\MaxFitStudio-$v-win-x64.zip"
+
+          New-Item -ItemType Directory stage-ctl | Out-Null
+          Copy-Item FanTechMaxFitCollection\Build\x64\Release\maxfitctl.exe stage-ctl\
+          Copy-Item LICENSE, FanTechMaxFitCollection\README.md stage-ctl\
+          Compress-Archive stage-ctl\* "dist\maxfitctl-$v-win-x64.zip"
+
+          Get-ChildItem dist\*.zip | ForEach-Object {
+            "{0}  {1}" -f (Get-FileHash $_ -Algorithm SHA256).Hash.ToLower(), $_.Name
+          } | Set-Content dist\SHA256SUMS.txt -Encoding ascii
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/*.zip
+
+      - name: Publish release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $v = "${{ github.ref_name }}"
+          $notes = @"
+          ## Downloads
+
+          | File | What it is |
+          |---|---|
+          | ``MaxFitStudio-$v-win-x64.zip`` | The GUI app. Unzip and run ``MaxFitStudio.exe``. |
+          | ``maxfitctl-$v-win-x64.zip`` | The command-line tool. Run ``maxfitctl info`` to check it sees your keyboard. |
+          | ``SHA256SUMS.txt`` | Checksums for both zips. |
+
+          Built and published by GitHub Actions from commit ``${{ github.sha }}``. You can verify a download came from this repo's CI with:
+
+          ``````
+          gh attestation verify MaxFitStudio-$v-win-x64.zip --repo ${{ github.repository }}
+          ``````
+
+          Windows only, x64. Tested on MAXFIT61 firmware ``V1.03.07``. Use at your own risk; see the README.
+          "@
+          $notes = $notes -replace '(?m)^          ', ''
+          $extra = @()
+          if ($v -match '-') { $extra += '--prerelease' }
+          $assets = (Get-ChildItem dist).FullName
+          gh release create $v @assets --title "MaxFitStuff $v" --notes "$notes" --generate-notes @extra
