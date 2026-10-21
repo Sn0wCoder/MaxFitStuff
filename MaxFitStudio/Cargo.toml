@@ -1,0 +1,17 @@
+[workspace]
+resolver = "3"
+members = ["maxfit-core", "maxfit-device", "maxfit-gui"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MoonArc v1"
+
+[workspace.dependencies]
+maxfit-core = { path = "maxfit-core" }
+maxfit-device = { path = "maxfit-device" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"

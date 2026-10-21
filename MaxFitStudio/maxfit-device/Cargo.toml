@@ -1,0 +1,12 @@
+[package]
+name = "maxfit-device"
+description = "Windows HID transport and device worker thread for the MAXFIT61"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+hidapi = "2.6.7"   # vendored C backend: avoids windows-sys raw-dylib, which needs dlltool
+maxfit-core.workspace = true
+thiserror = "2.0.21"

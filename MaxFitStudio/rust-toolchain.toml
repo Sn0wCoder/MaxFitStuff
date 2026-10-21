@@ -1,0 +1,14 @@
+# Pin the MSVC toolchain explicitly.
+#
+# This machine has two Rust installations: rustup's (x86_64-pc-windows-msvc) and
+# a Chocolatey one (x86_64-pc-windows-gnu) that comes FIRST on PATH. Building
+# with the GNU one fails in `windows-sys` with "error calling dlltool
+# 'dlltool.exe': program not found", which is not an obvious symptom of the real
+# cause. Use rustup's cargo:
+#
+#   C:\Users\Dreamy\.cargo\bin\cargo.exe build
+#
+# rustup's cargo reads this file; the Chocolatey one ignores it.
+[toolchain]
+channel = "stable"
+targets = ["x86_64-pc-windows-msvc"]

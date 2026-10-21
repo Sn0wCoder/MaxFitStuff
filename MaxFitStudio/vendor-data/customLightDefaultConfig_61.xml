@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<customLight>
+	<customLed index="0" name="Custom 0" isUsing="Using" usingFlagIndex="0">
+		<item keyCode="20" codeName="Q" indexX="2" indexY="1" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="26" codeName="W" indexX="2" indexY="2" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="8" codeName="E" indexX="2" indexY="3" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="21" codeName="R" indexX="2" indexY="4" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="23" codeName="T" indexX="2" indexY="5" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="28" codeName="Y" indexX="2" indexY="6" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="24" codeName="U" indexX="2" indexY="7" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="12" codeName="I" indexX="2" indexY="8" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="18" codeName="O" indexX="2" indexY="9" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="19" codeName="P" indexX="2" indexY="10" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="47" codeName="[{" indexX="2" indexY="11" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="48" codeName="]}" indexX="2" indexY="12" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="49" codeName="\|" indexX="2" indexY="14" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="4" codeName="A" indexX="3" indexY="2" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="22" codeName="S" indexX="3" indexY="3" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="7" codeName="D" indexX="3" indexY="4" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="9" codeName="F" indexX="3" indexY="5" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="10" codeName="G" indexX="3" indexY="6" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="11" codeName="H" indexX="3" indexY="7" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="13" codeName="J" indexX="3" indexY="8" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="14" codeName="K" indexX="3" indexY="9" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="15" codeName="L" indexX="3" indexY="10" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="51" codeName="; :" indexX="3" indexY="11" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="52" codeName='&apos; &quot;' indexX="3" indexY="12" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="29" codeName="Z" indexX="4" indexY="2" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="27" codeName="X" indexX="4" indexY="3" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="6" codeName="C" indexX="4" indexY="4" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="25" codeName="V" indexX="4" indexY="5" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="5" codeName="B" indexX="4" indexY="6" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="17" codeName="N" indexX="4" indexY="7" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="16" codeName="M" indexX="4" indexY="8" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="54" codeName=",&lt;" indexX="4" indexY="9" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="55" codeName=".&gt;" indexX="4" indexY="10" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+		<item keyCode="56" codeName="/?" indexX="4" indexY="11" colorR="0" colorG="0" colorB="255" transparentNum="128" />
+	</customLed>
+	<customLed index="1" name="Custom 1" isUsing="Using" usingFlagIndex="1">
+		<item keyCode="26" codeName="W" indexX="2" indexY="2" colorR="255" colorG="0" colorB="0" transparentNum="128" />
+		<item keyCode="4" codeName="A" indexX="3" indexY="2" colorR="255" colorG="0" colorB="0" transparentNum="128" />
+		<item keyCode="22" codeName="S" indexX="3" indexY="3" colorR="255" colorG="0" colorB="0" transparentNum="128" />
+		<item keyCode="7" codeName="D" indexX="3" indexY="4" colorR="255" colorG="0" colorB="0" transparentNum="128" />
+	</customLed>
+	<customLed index="2" name="Custom 2" isUsing="UnUsing" usingFlagIndex="-1" />
+	<customLed index="3" name="Custom 3" isUsing="UnUsing" usingFlagIndex="-1" />
+	<customLed index="4" name="Custom 4" isUsing="UnUsing" usingFlagIndex="-1" />
+</customLight>

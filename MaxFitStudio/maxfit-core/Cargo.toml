@@ -1,0 +1,11 @@
+[package]
+name = "maxfit-core"
+description = "Wire protocol, key layout and effect engine for the Fantech MAXFIT61"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
